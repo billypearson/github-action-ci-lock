@@ -48,8 +48,19 @@ while true; do
       if [[ "$EXISTING_CONTENT" != "${SHA}|${LOCKED_BY}" ]]; then
         echo "🔒 Lock already held by another job: $EXISTING_CONTENT"
         echo "⏳ Waiting $RETRY_DELAY seconds before retry..."
+        if [[ "$RETRY_COUNT" -gt 0 && "$ATTEMPT" -ge "$RETRY_COUNT" ]]; then
+          echo "❌ Failed to acquire lock after $RETRY_COUNT attempts."
+          exit 1
+        fi
+        if (( ATTEMPT >= MAX_TOTAL_ATTEMPTS )); then
+          echo "❌ Timeout acquiring lock after $MAX_TOTAL_ATTEMPTS attempts."
+          exit 1
+        fi
         sleep "$RETRY_DELAY"
         continue
+      else
+        echo "⚠️ Lock file already exists and is held by current job. No action needed."
+        exit 0
       fi
     fi
 
@@ -62,7 +73,9 @@ while true; do
             echo "✅ Lock acquired on attempt $ATTEMPT"
 
             echo "🔍 Verifying lock ownership..."
+            git stash --include-untracked || true
             git pull --rebase origin "${LOCK_BRANCH:-main}" || true
+            git stash pop || true
             ACTUAL_CONTENT=$(base64 -d "$LOCK_FILE" | jq -r '.sha + "|" + .locked_by')
 
             if [[ "$ACTUAL_CONTENT" != "${SHA}|${LOCKED_BY}" ]]; then

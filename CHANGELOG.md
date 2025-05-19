@@ -1,3 +1,10 @@
+## [1.1.13](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.12...v1.1.13) (2025-05-19)
+
+
+### Bug Fixes
+
+* bump code release ([53a6d68](https://github.com/billypearson/github-action-ci-lock/commit/53a6d68de383bd4c9695382954c3439d79a78911))
+
 ## [1.1.12](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.11...v1.1.12) (2025-05-19)
 
 

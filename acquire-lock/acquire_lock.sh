@@ -30,8 +30,6 @@ LOCK_CONTENT=$(jq -nc \
 
 ENCODED_CONTENT=$(echo "$LOCK_CONTENT" | base64 -w 0)
 
-echo "$ENCODED_CONTENT" > "$LOCK_FILE"
-
 
 # Retry logic for acquiring the lock
 RETRY_COUNT="${RETRY_COUNT:-3}"
@@ -44,6 +42,19 @@ while true; do
     echo "🔐 Attempt $ATTEMPT to acquire lock..."
 
     git pull --rebase origin "${LOCK_BRANCH:-main}" || true
+
+    if [[ -f "$LOCK_FILE" ]]; then
+      EXISTING_CONTENT=$(base64 -d "$LOCK_FILE" | jq -r '.sha + "|" + .locked_by')
+      if [[ "$EXISTING_CONTENT" != "${SHA}|${LOCKED_BY}" ]]; then
+        echo "🔒 Lock already held by another job: $EXISTING_CONTENT"
+        echo "⏳ Waiting $RETRY_DELAY seconds before retry..."
+        sleep "$RETRY_DELAY"
+        continue
+      fi
+    fi
+
+    echo "$ENCODED_CONTENT" > "$LOCK_FILE"
+
     git add "$LOCK_FILE"
 
     if git commit -m "acquire-lock: $LOCK_NAME by $LOCKED_BY"; then

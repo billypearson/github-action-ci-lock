@@ -11,7 +11,7 @@ git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/${LOCK_REPO}.git" "
 cd "$WORKDIR"
 git checkout "${LOCK_BRANCH:-main}"
 
-mkdir -p .locks
+mkdir -p "$(dirname "$LOCK_FILE")"
 
 LOCK_CONTENT=$(jq -nc \
   --arg by "${LOCKED_BY}" \

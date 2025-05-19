@@ -40,5 +40,13 @@ runs:
     - run: ./acquire_lock.sh
       shell: bash
       env:
+        LOCK_NAME: ${{ inputs.lock_name }}
+        LOCK_REPO: ${{ inputs.lock_repo }}
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        LOCK_BRANCH: ${{ inputs.lock_branch }}
+        LOCKED_BY: ${{ inputs.locked_by }}
+        REF: ${{ inputs.ref }}
+        SHA: ${{ inputs.sha }}
+        SOURCE: ${{ inputs.source }}
         RETRY_COUNT: ${{ inputs.retry_count }}
         RETRY_DELAY: ${{ inputs.retry_delay }}

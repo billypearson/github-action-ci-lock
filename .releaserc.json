@@ -22,6 +22,12 @@
                 ],
                 "message": "chore(release): ${nextRelease.version} [skip ci]"
             }
+        ],
+        [
+            "@semantic-release/exec",
+            {
+                "publishCmd": "git tag -f v${nextRelease.version.split('.')[0]} && git push origin v${nextRelease.version.split('.')[0]} --force"
+            }
         ]
     ]
 }

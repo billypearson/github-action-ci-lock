@@ -1,7 +1,12 @@
 {
     "branches": [
-        "main"
+        {
+            "name": "main",
+            "channel": "latest",
+            "prerelease": false
+        }
     ],
+    "tagFormat": "v${version}",
     "plugins": [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",

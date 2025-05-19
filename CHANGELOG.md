@@ -1,3 +1,10 @@
+## [1.1.15](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.14...v1.1.15) (2025-05-19)
+
+
+### Bug Fixes
+
+* push change to attempt incr ([19670dc](https://github.com/billypearson/github-action-ci-lock/commit/19670dcf09a601463e4a2f48d5f5a27eb6eeed51))
+
 ## [1.1.14](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.13...v1.1.14) (2025-05-19)
 
 

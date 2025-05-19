@@ -1,3 +1,10 @@
+## [1.1.11](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.10...v1.1.11) (2025-05-19)
+
+
+### Bug Fixes
+
+* adding Guard every possible failure inside the loop so the script never exits unexpectedly. ([9ed1b49](https://github.com/billypearson/github-action-ci-lock/commit/9ed1b49fd9de30f90f800f6ee39f886c6b2fc743))
+
 ## [1.1.10](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.9...v1.1.10) (2025-05-19)
 
 

@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.7...v1.1.8) (2025-05-19)
+
+
+### Bug Fixes
+
+* working out errors in loop retried and existing working dir in release ([646c372](https://github.com/billypearson/github-action-ci-lock/commit/646c37231f86f5e61ac39201fd018a32a522e74d))
+
 ## [1.1.7](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.6...v1.1.7) (2025-05-19)
 
 

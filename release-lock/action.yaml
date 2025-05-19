@@ -19,3 +19,8 @@ runs:
   steps:
     - run: ${{ github.action_path }}/release_lock.sh
       shell: bash
+      env:
+        LOCK_NAME: ${{ inputs.lock_name }}
+        LOCK_REPO: ${{ inputs.lock_repo }}
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        LOCK_BRANCH: ${{ inputs.lock_branch }}

@@ -42,6 +42,14 @@ while true; do
     if git push origin HEAD; then
       echo "✅ Lock acquired on attempt $ATTEMPT"
       break
+    else
+      echo "❌ git push failed on attempt $ATTEMPT. Dumping status:"
+      git status
+      git remote -v
+      git branch -vv
+      echo "Last 20 log lines:"
+      git log -20 --oneline --decorate --graph
+      exit 1
     fi
   else
     echo "ℹ️  Nothing to commit on attempt $ATTEMPT"

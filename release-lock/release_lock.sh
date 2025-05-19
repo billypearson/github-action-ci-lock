@@ -7,6 +7,9 @@ WORKDIR="lock-repo"
 git config --global user.name "ci-lock"
 git config --global user.email "ci-lock@github"
 
+# Remove existing repo if present (for reruns)
+rm -rf "$WORKDIR"
+
 git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/${LOCK_REPO}.git" "$WORKDIR"
 cd "$WORKDIR"
 git checkout "${LOCK_BRANCH:-main}"

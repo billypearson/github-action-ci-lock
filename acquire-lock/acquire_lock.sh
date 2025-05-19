@@ -52,8 +52,8 @@ while true; do
       exit 1
     fi
   else
-    echo "ℹ️  Nothing to commit on attempt $ATTEMPT"
-    break
+    echo "ℹ️  Nothing to commit on attempt $ATTEMPT (lock already held or unchanged). Exiting successfully."
+    exit 0
   fi
 
   if [[ "$RETRY_COUNT" -ne 0 && "$ATTEMPT" -ge "$RETRY_COUNT" ]]; then

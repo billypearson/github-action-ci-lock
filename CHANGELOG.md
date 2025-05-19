@@ -1,3 +1,10 @@
+## [1.1.17](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.16...v1.1.17) (2025-05-19)
+
+
+### Bug Fixes
+
+* push update to check for existing lock and not allow overwrite of existing locks ([1d70342](https://github.com/billypearson/github-action-ci-lock/commit/1d70342f205b3fa197ca834f60ba5962992a9f25))
+
 ## [1.1.16](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.15...v1.1.16) (2025-05-19)
 
 

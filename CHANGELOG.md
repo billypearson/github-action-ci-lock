@@ -1,3 +1,10 @@
+## [1.1.12](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.11...v1.1.12) (2025-05-19)
+
+
+### Bug Fixes
+
+* push updates to fix some edge cases ([0544862](https://github.com/billypearson/github-action-ci-lock/commit/0544862342fb3dbab1542bde4fd547bd0bc1c9fa))
+
 ## [1.1.11](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.10...v1.1.11) (2025-05-19)
 
 

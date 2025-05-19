@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.2...v1.1.3) (2025-05-19)
+
+
+### Bug Fixes
+
+* forgot required fields for env variables ([25deacb](https://github.com/billypearson/github-action-ci-lock/commit/25deacbdf446175ccd0f9227090aae8f60325628))
+
 ## [1.1.2](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.1...v1.1.2) (2025-05-19)
 
 

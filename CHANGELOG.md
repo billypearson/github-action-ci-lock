@@ -1,3 +1,10 @@
+## [1.1.14](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.13...v1.1.14) (2025-05-19)
+
+
+### Bug Fixes
+
+* push update to add in timeout for max attempts ([63e691d](https://github.com/billypearson/github-action-ci-lock/commit/63e691d0f29e68ca1804d7f59a0ea6555352d6c9))
+
 ## [1.1.13](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.12...v1.1.13) (2025-05-19)
 
 

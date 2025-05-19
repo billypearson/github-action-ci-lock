@@ -39,51 +39,53 @@ RETRY_DELAY="${RETRY_DELAY:-5}"
 MAX_TOTAL_ATTEMPTS=60
 ATTEMPT=0
 
-while (( ATTEMPT < MAX_TOTAL_ATTEMPTS )); do
-  ((ATTEMPT++))
-  echo "🔐 Attempt $ATTEMPT to acquire lock..."
+while true; do
+    ((ATTEMPT++))
+    echo "🔐 Attempt $ATTEMPT to acquire lock..."
 
-  git pull --rebase origin "${LOCK_BRANCH:-main}" || true
-  git add "$LOCK_FILE"
+    git pull --rebase origin "${LOCK_BRANCH:-main}" || true
+    git add "$LOCK_FILE"
 
-  if git commit -m "acquire-lock: $LOCK_NAME by $LOCKED_BY"; then
-    if git push origin HEAD; then
-      echo "✅ Lock acquired on attempt $ATTEMPT"
+    if git commit -m "acquire-lock: $LOCK_NAME by $LOCKED_BY"; then
+        if git push origin HEAD; then
+            echo "✅ Lock acquired on attempt $ATTEMPT"
 
-      echo "🔍 Verifying lock ownership..."
+            echo "🔍 Verifying lock ownership..."
+            git pull --rebase origin "${LOCK_BRANCH:-main}" || true
+            ACTUAL_CONTENT=$(base64 -d "$LOCK_FILE" | jq -r '.sha + "|" + .locked_by')
 
-      git pull --rebase origin "${LOCK_BRANCH:-main}" || true
-      ACTUAL_CONTENT=$(base64 -d "$LOCK_FILE" | jq -r '.sha + "|" + .locked_by')
+            if [[ "$ACTUAL_CONTENT" != "${SHA}|${LOCKED_BY}" ]]; then
+                echo "❌ Lock file content mismatch. Another process acquired the lock."
+                exit 1
+            fi
 
-      if [[ "$ACTUAL_CONTENT" != "${SHA}|${LOCKED_BY}" ]]; then
-        echo "❌ Lock file content mismatch. Another process acquired the lock."
-        exit 1
-      fi
-
-      echo "✅ Verified lock ownership."
-      break
+            echo "✅ Verified lock ownership."
+            break
+        else
+            echo "❌ git push failed on attempt $ATTEMPT. Dumping status:"
+            git status || true
+            git remote -v || true
+            git branch -vv || true
+            echo "Last 20 log lines:"
+            git log -20 --oneline --decorate --graph || true
+        fi
     else
-      echo "❌ git push failed on attempt $ATTEMPT. Dumping status:"
-      git status || true
-      git remote -v || true
-      git branch -vv || true
-      echo "Last 20 log lines:"
-      git log -20 --oneline --decorate --graph || true
-      # Don't exit here, just retry below
+        echo "ℹ️  Nothing to commit on attempt $ATTEMPT (lock already held or unchanged). Exiting successfully."
+        exit 0
     fi
-  else
-    echo "ℹ️  Nothing to commit on attempt $ATTEMPT (lock already held or unchanged). Exiting successfully."
-    exit 0
-  fi
 
-  # Only enforce RETRY_COUNT if RETRY_COUNT is greater than 0
-  if [[ "$RETRY_COUNT" -gt 0 && "$ATTEMPT" -ge "$RETRY_COUNT" ]]; then
-    echo "❌ Failed to acquire lock after $RETRY_COUNT attempts."
-    exit 1
-  fi
+    if [[ "$RETRY_COUNT" -gt 0 && "$ATTEMPT" -ge "$RETRY_COUNT" ]]; then
+        echo "❌ Failed to acquire lock after $RETRY_COUNT attempts."
+        exit 1
+    fi
 
-  echo "⏳ Waiting $RETRY_DELAY seconds before retry..."
-  sleep "$RETRY_DELAY"
+    if (( ATTEMPT >= MAX_TOTAL_ATTEMPTS )); then
+        echo "❌ Timeout acquiring lock after $MAX_TOTAL_ATTEMPTS attempts."
+        exit 1
+    fi
+
+    echo "⏳ Waiting $RETRY_DELAY seconds before retry..."
+    sleep "$RETRY_DELAY"
 done
 
 echo "❌ Timeout acquiring lock after $MAX_TOTAL_ATTEMPTS attempts."

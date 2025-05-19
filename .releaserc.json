@@ -12,8 +12,8 @@
             {
                 "assets": [
                     "CHANGELOG.md",
-                    "acquire-lock/action.yml",
-                    "release-lock/action.yml"
+                    "acquire-lock/action.yaml",
+                    "release-lock/action.yaml"
                 ],
                 "message": "chore(release): ${nextRelease.version} [skip ci]"
             }

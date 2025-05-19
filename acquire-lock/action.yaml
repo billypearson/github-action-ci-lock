@@ -13,7 +13,7 @@ inputs:
   lock_branch:
     required: false
     default: main
-    description: Branch in the lock repository to write lock files (default: main)
+    description: "Branch in the lock repository to write lock files (default: main)"
   locked_by:
     required: true
     description: Identifier for the actor acquiring the lock (e.g., workflow or bot name)

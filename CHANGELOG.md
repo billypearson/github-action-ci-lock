@@ -1,3 +1,10 @@
+# 1.0.0 (2025-05-19)
+
+
+### Bug Fixes
+
+* workflow rename ([ead9539](https://github.com/billypearson/github-action-ci-lock/commit/ead9539528704e3a8f07cc3c083d28dc128b0978))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

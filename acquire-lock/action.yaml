@@ -3,31 +3,42 @@ description: Acquire a file-based lock in a remote GitHub repository.
 inputs:
   lock_name:
     required: true
-    description: Unique name for the lock file (e.g., agent-profile)
+    description: "Unique name for the lock file (e.g., agent-profile)"
   lock_repo:
     required: true
-    description: Repository to store lock files (e.g., billypearson/ci-lock-state)
+    description: "Repository to store lock files (e.g., billypearson/ci-lock-state)"
   github_token:
     required: true
-    description: GitHub token with push access to the lock_repo
+    description: "GitHub token with push access to the lock_repo"
   lock_branch:
     required: false
     default: main
     description: "Branch in the lock repository to write lock files (default: main)"
   locked_by:
     required: true
-    description: Identifier for the actor acquiring the lock (e.g., workflow or bot name)
+    description: "Identifier for the actor acquiring the lock (e.g., workflow or bot name)"
   ref:
     required: false
-    description: Optional Git ref (e.g., refs/heads/main) for context
+    description: "Optional Git ref (e.g., refs/heads/main) for context"
   sha:
     required: false
-    description: Optional commit SHA for traceability
+    description: "Optional commit SHA for traceability"
   source:
     required: false
-    description: Optional string identifying the source context (e.g., workflow name)
+    description: "Optional string identifying the source context (e.g., workflow name)"
+  retry_count:
+    required: false
+    default: "3"
+    description: "Number of times to retry lock acquisition. Use 0 for unlimited retries."
+  retry_delay:
+    required: false
+    default: "5"
+    description: "Delay (in seconds) between retries."
 runs:
   using: composite
   steps:
     - run: ./acquire_lock.sh
       shell: bash
+      env:
+        RETRY_COUNT: ${{ inputs.retry_count }}
+        RETRY_DELAY: ${{ inputs.retry_delay }}

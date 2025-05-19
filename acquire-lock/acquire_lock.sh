@@ -46,11 +46,11 @@ while true; do
       break
     else
       echo "❌ git push failed on attempt $ATTEMPT. Dumping status:"
-      git status
-      git remote -v
-      git branch -vv
+      git status || true
+      git remote -v || true
+      git branch -vv || true
       echo "Last 20 log lines:"
-      git log -20 --oneline --decorate --graph
+      git log -20 --oneline --decorate --graph || true
       # Don't exit here, just retry below
     fi
   else
@@ -58,7 +58,7 @@ while true; do
     exit 0
   fi
 
-  # Only enforce RETRY_COUNT if it is greater than 0
+  # Only enforce RETRY_COUNT if RETRY_COUNT is greater than 0
   if [[ "$RETRY_COUNT" -gt 0 && "$ATTEMPT" -ge "$RETRY_COUNT" ]]; then
     echo "❌ Failed to acquire lock after $RETRY_COUNT attempts."
     exit 1

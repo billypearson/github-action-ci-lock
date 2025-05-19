@@ -1,3 +1,10 @@
+## [1.1.16](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.15...v1.1.16) (2025-05-19)
+
+
+### Bug Fixes
+
+* remove the ensure the lock file matches post-rebase ([8bf1e65](https://github.com/billypearson/github-action-ci-lock/commit/8bf1e65dda7f33f2dce2274bb09bb795f489005a))
+
 ## [1.1.15](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.14...v1.1.15) (2025-05-19)
 
 

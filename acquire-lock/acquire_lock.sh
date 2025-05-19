@@ -40,7 +40,7 @@ MAX_TOTAL_ATTEMPTS=60
 ATTEMPT=0
 
 while true; do
-    ((ATTEMPT++))
+    (( ++ATTEMPT ))
     echo "🔐 Attempt $ATTEMPT to acquire lock..."
 
     git pull --rebase origin "${LOCK_BRANCH:-main}" || true

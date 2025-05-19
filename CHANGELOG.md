@@ -1,3 +1,11 @@
+## [1.1.2](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.1...v1.1.2) (2025-05-19)
+
+
+### Bug Fixes
+
+* missing a dep for release ([e6baee2](https://github.com/billypearson/github-action-ci-lock/commit/e6baee2ce9a418b50cbbb4c26c99b6efe52c40a1))
+* release issue with v1 tag ([7cadc41](https://github.com/billypearson/github-action-ci-lock/commit/7cadc410689896c67998997af4e0b9cfc005cfc7))
+
 ## [1.1.1](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.0...v1.1.1) (2025-05-19)
 
 

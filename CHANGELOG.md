@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/billypearson/github-action-ci-lock/compare/v1.0.0...v1.1.0) (2025-05-19)
+
+
+### Features
+
+* added retry logic to acquire-lock ([2604187](https://github.com/billypearson/github-action-ci-lock/commit/260418757abbfc679d24bfdc4428a46c9b997204))
+
 # 1.0.0 (2025-05-19)
 
 

@@ -1,3 +1,10 @@
+## [1.1.18](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.17...v1.1.18) (2025-05-19)
+
+
+### Bug Fixes
+
+* bump to remove debugging ([f2859b5](https://github.com/billypearson/github-action-ci-lock/commit/f2859b5e8288ff9c63e433614ccb297ae4b79f65))
+
 ## [1.1.17](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.16...v1.1.17) (2025-05-19)
 
 

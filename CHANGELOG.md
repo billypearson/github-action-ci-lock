@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.6...v1.1.7) (2025-05-19)
+
+
+### Bug Fixes
+
+* adding debugging and fix some var missing in release lock ([843d062](https://github.com/billypearson/github-action-ci-lock/commit/843d0624e37b384f30d64bf61a0b61b3d46a38d5))
+
 ## [1.1.6](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.5...v1.1.6) (2025-05-19)
 
 

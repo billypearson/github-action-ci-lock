@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.4...v1.1.5) (2025-05-19)
+
+
+### Bug Fixes
+
+* mkdir -p for lock file in case lock name is a path ([1244231](https://github.com/billypearson/github-action-ci-lock/commit/1244231d3d505a57b9fe89b1aa307f353fd4534c))
+
 ## [1.1.4](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.3...v1.1.4) (2025-05-19)
 
 

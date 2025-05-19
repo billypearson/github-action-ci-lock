@@ -37,7 +37,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: ./acquire_lock.sh
+    - run: ${{ github.action_path }}/acquire_lock.sh
       shell: bash
       env:
         LOCK_NAME: ${{ inputs.lock_name }}

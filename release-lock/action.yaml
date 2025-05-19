@@ -17,5 +17,5 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: ./release_lock.sh
+    - run: ${{ github.action_path }}/release_lock.sh
       shell: bash

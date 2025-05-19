@@ -1,15 +1,15 @@
 name: Release Lock
-description: Release a lock by removing the lock file.
+description: "Release a lock by removing the lock file."
 inputs:
   lock_name:
     required: true
-    description: Unique name of the lock file to release
+    description: "Unique name of the lock file to release"
   lock_repo:
     required: true
-    description: Target GitHub repository where the lock file is stored
+    description: "Target GitHub repository where the lock file is stored"
   github_token:
     required: true
-    description: GitHub token with write access to the lock repository
+    description: "GitHub token with write access to the lock repository"
   lock_branch:
     required: false
     default: main

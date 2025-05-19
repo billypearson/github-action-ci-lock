@@ -25,6 +25,34 @@ ENCODED_CONTENT=$(echo "$LOCK_CONTENT" | base64 -w 0)
 
 echo "$ENCODED_CONTENT" > "$LOCK_FILE"
 
-git add "$LOCK_FILE"
-git commit -m "acquire-lock: $LOCK_NAME by $LOCKED_BY"
-git push origin HEAD
+
+# Retry logic for acquiring the lock
+RETRY_COUNT="${RETRY_COUNT:-3}"
+RETRY_DELAY="${RETRY_DELAY:-5}"
+ATTEMPT=0
+
+while true; do
+  ((ATTEMPT++))
+  echo "🔐 Attempt $ATTEMPT to acquire lock..."
+
+  git pull --rebase origin "${LOCK_BRANCH:-main}" || true
+  git add "$LOCK_FILE"
+
+  if git commit -m "acquire-lock: $LOCK_NAME by $LOCKED_BY"; then
+    if git push origin HEAD; then
+      echo "✅ Lock acquired on attempt $ATTEMPT"
+      break
+    fi
+  else
+    echo "ℹ️  Nothing to commit on attempt $ATTEMPT"
+    break
+  fi
+
+  if [[ "$RETRY_COUNT" -ne 0 && "$ATTEMPT" -ge "$RETRY_COUNT" ]]; then
+    echo "❌ Failed to acquire lock after $RETRY_COUNT attempts."
+    exit 1
+  fi
+
+  echo "⏳ Waiting $RETRY_DELAY seconds before retry..."
+  sleep "$RETRY_DELAY"
+done

@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.0...v1.1.1) (2025-05-19)
+
+
+### Bug Fixes
+
+* makeing update to get v1 to follow latest 1.y.z version ([02c1953](https://github.com/billypearson/github-action-ci-lock/commit/02c19532cf14f46a8e521e6fd35ee1629f3c3787))
+
 # [1.1.0](https://github.com/billypearson/github-action-ci-lock/compare/v1.0.0...v1.1.0) (2025-05-19)
 
 

@@ -1,8 +1,6 @@
 #!/bin/bash
 set -euxo pipefail
 
-# Set a 5-minute timeout to avoid hanging indefinitely
-exec timeout 3600 "$0" "$@"
 
 LOCK_FILE=".locks/${LOCK_NAME}.lock"
 WORKDIR="lock-repo"

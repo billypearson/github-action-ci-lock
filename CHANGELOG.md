@@ -1,3 +1,10 @@
+## [1.1.10](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.9...v1.1.10) (2025-05-19)
+
+
+### Bug Fixes
+
+* adding retry logic ([ad48442](https://github.com/billypearson/github-action-ci-lock/commit/ad48442d013151dea553fbafee1c5094b4fbbf9f))
+
 ## [1.1.9](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.8...v1.1.9) (2025-05-19)
 
 

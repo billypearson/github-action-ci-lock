@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.5...v1.1.6) (2025-05-19)
+
+
+### Bug Fixes
+
+* add debuging set command at top of script ([5086515](https://github.com/billypearson/github-action-ci-lock/commit/50865153c7c125821b404f96f2c1ba3b9d8dfb03))
+
 ## [1.1.5](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.4...v1.1.5) (2025-05-19)
 
 

@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.3...v1.1.4) (2025-05-19)
+
+
+### Bug Fixes
+
+* fix relative path to absolute path ([a710103](https://github.com/billypearson/github-action-ci-lock/commit/a71010349d9f56045778b1afc4f85e8edfaa98bf))
+
 ## [1.1.3](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.2...v1.1.3) (2025-05-19)
 
 

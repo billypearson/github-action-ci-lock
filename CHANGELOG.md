@@ -1,3 +1,10 @@
+## [1.1.9](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.8...v1.1.9) (2025-05-19)
+
+
+### Bug Fixes
+
+* delete working dir before clone ([3ba1176](https://github.com/billypearson/github-action-ci-lock/commit/3ba1176fac25529deb2ce035c130d5cc115d9d19))
+
 ## [1.1.8](https://github.com/billypearson/github-action-ci-lock/compare/v1.1.7...v1.1.8) (2025-05-19)
 
 

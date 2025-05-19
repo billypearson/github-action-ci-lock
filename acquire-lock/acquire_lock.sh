@@ -60,6 +60,14 @@ while true; do
             fi
 
             echo "✅ Verified lock ownership."
+
+            # Ensure the lock file still matches post-rebase before exiting loop
+            ACTUAL_CONTENT=$(base64 -d "$LOCK_FILE" | jq -r '.sha + "|" + .locked_by')
+            if [[ "$ACTUAL_CONTENT" != "${SHA}|${LOCKED_BY}" ]]; then
+                echo "❌ Race condition detected. Lock overwritten after verification."
+                exit 1
+            fi
+
             break
         else
             echo "❌ git push failed on attempt $ATTEMPT. Dumping status:"
@@ -88,5 +96,7 @@ while true; do
     sleep "$RETRY_DELAY"
 done
 
-echo "❌ Timeout acquiring lock after $MAX_TOTAL_ATTEMPTS attempts."
-exit 1
+if (( ATTEMPT >= MAX_TOTAL_ATTEMPTS )); then
+    echo "❌ Timeout acquiring lock after $MAX_TOTAL_ATTEMPTS attempts."
+    exit 1
+fi

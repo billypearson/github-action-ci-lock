@@ -1,0 +1,33 @@
+name: Acquire Lock
+description: Acquire a file-based lock in a remote GitHub repository.
+inputs:
+  lock_name:
+    required: true
+    description: Unique name for the lock file (e.g., agent-profile)
+  lock_repo:
+    required: true
+    description: Repository to store lock files (e.g., billypearson/ci-lock-state)
+  github_token:
+    required: true
+    description: GitHub token with push access to the lock_repo
+  lock_branch:
+    required: false
+    default: main
+    description: Branch in the lock repository to write lock files (default: main)
+  locked_by:
+    required: true
+    description: Identifier for the actor acquiring the lock (e.g., workflow or bot name)
+  ref:
+    required: false
+    description: Optional Git ref (e.g., refs/heads/main) for context
+  sha:
+    required: false
+    description: Optional commit SHA for traceability
+  source:
+    required: false
+    description: Optional string identifying the source context (e.g., workflow name)
+runs:
+  using: composite
+  steps:
+    - run: ./acquire_lock.sh
+      shell: bash

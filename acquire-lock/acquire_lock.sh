@@ -51,14 +51,15 @@ while true; do
       git branch -vv
       echo "Last 20 log lines:"
       git log -20 --oneline --decorate --graph
-      exit 1
+      # Don't exit here, just retry below
     fi
   else
     echo "ℹ️  Nothing to commit on attempt $ATTEMPT (lock already held or unchanged). Exiting successfully."
     exit 0
   fi
 
-  if [[ "$RETRY_COUNT" -ne 0 && "$ATTEMPT" -ge "$RETRY_COUNT" ]]; then
+  # Only enforce RETRY_COUNT if it is greater than 0
+  if [[ "$RETRY_COUNT" -gt 0 && "$ATTEMPT" -ge "$RETRY_COUNT" ]]; then
     echo "❌ Failed to acquire lock after $RETRY_COUNT attempts."
     exit 1
   fi

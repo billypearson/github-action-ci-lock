@@ -1,7 +1,6 @@
 #!/bin/bash
 set -euxo pipefail
 
-
 LOCK_FILE=".locks/${LOCK_NAME}.lock"
 WORKDIR="lock-repo"
 

@@ -1,0 +1,22 @@
+{
+    "branches": [
+        "main"
+    ],
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        "@semantic-release/changelog",
+        "@semantic-release/github",
+        [
+            "@semantic-release/git",
+            {
+                "assets": [
+                    "CHANGELOG.md",
+                    "acquire-lock/action.yml",
+                    "release-lock/action.yml"
+                ],
+                "message": "chore(release): ${nextRelease.version} [skip ci]"
+            }
+        ]
+    ]
+}
